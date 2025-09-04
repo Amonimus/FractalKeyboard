@@ -5,7 +5,7 @@ from pygame import midi
 
 from Key import Key
 from Vector2 import Vector2
-from consts import const_BACKGROUND_COL, const_GRID_COL, const_KEY_WIDTH, col_WHITE
+from consts import const_BACKGROUND_COL, const_GRID_COL, const_KEY_WIDTH
 
 
 class FractalKeyboard:
@@ -168,13 +168,6 @@ class FractalKeyboard:
 
 	def make_row(self, coords: list, colors: list) -> None:
 		"""Build a key for each dimension"""
-		if len(colors) == 0:
-			# This can only happen if the dimensions = 0
-			colors = [self.key_list[0]]
-		black_count: int = colors.count(1)
-		shade: float = black_count / len(colors)
-		col: tuple = tuple(c * shade for c in col_WHITE)
-
 		x_depth: int = (len(coords) + 1) // 2
 		y_depth: int = len(coords) // 2
 
@@ -190,9 +183,12 @@ class FractalKeyboard:
 
 		rect: tuple = (x, y, width, height)
 
+		if len(colors) == 0:
+			# This can only happen if the dimensions = 0
+			colors = [self.key_list[0]]
 		if len(coords) == 0:
 			coords = [0]
-		key: Key = Key(self, coords, col, rect)
+		key: Key = Key(self, coords, colors, rect)
 		self.keys.append(key)
 
 	def recursive_setup(self, depth: int, coords=None, colors=None):

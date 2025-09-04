@@ -5,6 +5,7 @@ col_WHITE: tuple = (255, 255, 255)
 col_RED: tuple = (255, 0, 0)
 col_BLUE: tuple = (0, 0, 255)
 col_YELLOW: tuple = (255, 255, 0)
+col_PURPLE: tuple = (64, 0, 64)
 note_DO: int = 36  # The starting MIDI sound pitch
 # Quick parameters
 const_NOTE_DISTANCE: int = 4  # The step between sound keys, the standard is 2
